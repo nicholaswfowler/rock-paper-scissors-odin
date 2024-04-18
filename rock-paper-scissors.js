@@ -1,63 +1,56 @@
-function getUserChoice(){
-    let userChoice = prompt('Rock, Paper, or Scissors?');
-    userChoice = (userChoice.toLowerCase());
-    let firstLetter = userChoice.charAt(0);
-    userChoice = firstLetter.toUpperCase() + userChoice.substring(1);
-    if(userChoice == 'Rock'){
-        return userChoice;
-    }
-    else if(userChoice == 'Paper'){
-        return userChoice;
-    }
-    else if(userChoice == 'Scissors'){
-        return userChoice;
-    }
-    else{
-        alert('Please use a valid answer. (Rock, Paper, Scissors)');
-        getUserChoice();
-    }
-}
-
 function getComputerChoice(){
     let number = Math.floor(Math.random() * 3);
     let options = ['Rock', 'Paper', 'Scissors']
     return options[number];
 }
 
-let userChoice = getUserChoice();
-let computerChoice = getComputerChoice()
+const rock = document.querySelector('#rock');
+rock.addEventListener("click", () =>{
+    let computerChoice = getComputerChoice();
+    playRound('Rock', computerChoice);
+});
+const paper = document.querySelector('#paper');
+paper.addEventListener("click", () =>{
+    let computerChoice = getComputerChoice();
+    playRound('Paper', computerChoice);
+});
+const scissors = document.querySelector('#scissors');
+scissors.addEventListener("click", () =>{
+    let computerChoice = getComputerChoice();
+    playRound('Scissors', computerChoice);
+});
 
 function playRound(user, cpu){
+    const outcome = document.querySelector('#outcome');
+    const winner = document.createElement('p');
     if(user == 'Rock' && cpu == 'Scissors'){
-        alert(`${user} beats ${cpu}, YOU WIN!!`);
-        user = getUserChoice();
-        cpu = getComputerChoice();
-        playRound(user, cpu);
+        rock.removeAttribute('background-color');
+        winner.textContent = (`${user} beats ${cpu}, YOU WIN!!`);
+        outcome.lastChild.remove();
+        outcome.appendChild(winner);
     }
     else if(user == 'Paper' && cpu == 'Rock'){
-        alert(`${user} beats ${cpu}, YOU WIN!!`);
-        user = getUserChoice();
-        cpu = getComputerChoice();
-        playRound(user, cpu);
+        winner.textContent = (`${user} beats ${cpu}, YOU WIN!!`);
+        outcome.lastChild.remove();
+        outcome.appendChild(winner);
     }
     else if(user == 'Scissors' && cpu == 'Paper'){
-        alert(`${user} beats ${cpu}, YOU WIN!!`);
-        user = getUserChoice();
-        cpu = getComputerChoice();
-        playRound(user, cpu);
+        winner.textContent = (`${user} beats ${cpu}, YOU WIN!!`);
+        outcome.lastChild.remove();
+        outcome.appendChild(winner);
     }
     else if(user == cpu){
-        alert('Tie Game, try Again.');
-        user = getUserChoice();
-        cpu = getComputerChoice();
-        playRound(user, cpu);
+        winner.textContent = ('Tie Game, try Again.');
+        outcome.lastChild.remove();
+        outcome.appendChild(winner);
     }
     else{
-        alert(`${cpu} beats ${user}, YOU LOSE!!`);
-        user = getUserChoice();
-        cpu = getComputerChoice();
-        playRound(user, cpu);    
+        winner.textContent = (`${cpu} beats ${user}, YOU LOSE!!`);
+        outcome.lastChild.remove();
+        outcome.appendChild(winner);
     }
 }
 
-playRound(userChoice, computerChoice);
+
+
+// playRound(userChoice, computerChoice);

@@ -1,0 +1,22 @@
+.buttons{
+    display:flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+#rock, #paper, #scissors{
+    width: 33%;
+    height: 200px;
+    font-size: 24px;
+    font-weight: bolder;
+}
+
+#outcome{
+    display: flex;
+    gap: 3px;
+    font-size: 24px;
+    font-weight: bolder;
+    margin-left: 25%;
+    margin-right: 25%;  
+}
+
